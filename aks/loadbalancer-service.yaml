@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoapp-loadbalancer
+  namespace: todoapp
+  labels:
+    app: todoapp
+  annotations:
+    # Internal load balancer for private AKS cluster (as per Terraform plan)
+    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+spec:
+  type: LoadBalancer
+  selector:
+    app: todoapp
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+      protocol: TCP

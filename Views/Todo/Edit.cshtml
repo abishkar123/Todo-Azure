@@ -1,0 +1,88 @@
+@model TodoApp.Models.TodoItem
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="form-card">
+                <div class="form-card-header">
+                    <h2><i class="bi bi-pencil-square me-2"></i>Edit Task</h2>
+                    <p class="text-muted mb-0">Update your task details</p>
+                </div>
+                <div class="form-card-body">
+                    <form asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="CreatedAt" />
+                        <input type="hidden" asp-for="CompletedAt" />
+                        
+                        <div class="mb-4">
+                            <label asp-for="Title" class="form-label fw-medium">Task Title <span class="text-danger">*</span></label>
+                            <input asp-for="Title" class="form-control form-control-lg" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label asp-for="Description" class="form-label fw-medium">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger small"></span>
+                        </div>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="Priority" class="form-label fw-medium">Priority</label>
+                                <select asp-for="Priority" asp-items="Html.GetEnumSelectList<Priority>()" class="form-select">
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label asp-for="Category" class="form-label fw-medium">Category</label>
+                                <input asp-for="Category" class="form-control" placeholder="e.g., Work, Personal" list="categoryList" />
+                                <datalist id="categoryList">
+                                    <option value="Work"></option>
+                                    <option value="Personal"></option>
+                                    <option value="Shopping"></option>
+                                    <option value="Health"></option>
+                                    <option value="Finance"></option>
+                                    <option value="Home"></option>
+                                </datalist>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label asp-for="DueDate" class="form-label fw-medium">Due Date</label>
+                                <input asp-for="DueDate" type="date" class="form-control" />
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex flex-column gap-2 pt-4">
+                                    <div class="form-check form-switch">
+                                        <input asp-for="IsDone" class="form-check-input" style="width: 3em; height: 1.5em;" />
+                                        <label asp-for="IsDone" class="form-check-label ms-2">
+                                            <i class="bi bi-check-circle text-success me-1"></i>Mark as Done
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch">
+                                        <input asp-for="IsImportant" class="form-check-input" style="width: 3em; height: 1.5em;" />
+                                        <label asp-for="IsImportant" class="form-check-label ms-2">
+                                            <i class="bi bi-star text-warning me-1"></i>Important
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex gap-2 pt-3 border-top">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="bi bi-check-lg me-2"></i>Save Changes
+                            </button>
+                            <a class="btn btn-outline-secondary btn-lg" href="/">
+                                <i class="bi bi-x-lg me-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

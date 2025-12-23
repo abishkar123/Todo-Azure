@@ -1,0 +1,250 @@
+@model TodoApp.Models.TodoViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container py-4">
+    <!-- Header Section -->
+    <div class="dashboard-header mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="display-6 fw-bold mb-1">
+                    <i class="bi bi-clipboard2-check me-2"></i>My Tasks
+                </h1>
+                <p class="text-muted mb-0">Stay organized and productive</p>
+            </div>
+            <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                <a href="/Todo/Create" class="btn btn-primary btn-lg">
+                    <i class="bi bi-plus-lg me-2"></i>Add New Task
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+            <div class="stat-card stat-total">
+                <div class="stat-icon"><i class="bi bi-collection"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">@Model.TotalCount</span>
+                    <span class="stat-label">Total Tasks</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card stat-pending">
+                <div class="stat-icon"><i class="bi bi-hourglass-split"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">@Model.PendingCount</span>
+                    <span class="stat-label">Pending</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card stat-completed">
+                <div class="stat-icon"><i class="bi bi-check-circle"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">@Model.CompletedCount</span>
+                    <span class="stat-label">Completed</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-lg-3">
+            <div class="stat-card stat-overdue">
+                <div class="stat-icon"><i class="bi bi-exclamation-triangle"></i></div>
+                <div class="stat-info">
+                    <span class="stat-number">@Model.OverdueCount</span>
+                    <span class="stat-label">Overdue</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    @if (Model.TotalCount > 0)
+    {
+        var progressPercent = (int)((double)Model.CompletedCount / Model.TotalCount * 100);
+        <div class="progress-section mb-4">
+            <div class="d-flex justify-content-between mb-2">
+                <span class="fw-medium">Overall Progress</span>
+                <span class="text-primary fw-bold">@progressPercent%</span>
+            </div>
+            <div class="progress" style="height: 10px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: @progressPercent%"></div>
+            </div>
+        </div>
+    }
+
+    <!-- Filters -->
+    <div class="filter-section mb-4">
+        <div class="row g-2 align-items-center">
+            <div class="col-auto">
+                <span class="filter-label"><i class="bi bi-funnel me-1"></i>Filter:</span>
+            </div>
+            <div class="col-auto">
+                <a href="/" class="btn btn-filter @(string.IsNullOrEmpty(Model.FilterStatus) && string.IsNullOrEmpty(Model.FilterPriority) ? "active" : "")">
+                    All
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/?status=pending" class="btn btn-filter @(Model.FilterStatus == "pending" ? "active" : "")">
+                    <i class="bi bi-circle me-1"></i>Pending
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/?status=done" class="btn btn-filter @(Model.FilterStatus == "done" ? "active" : "")">
+                    <i class="bi bi-check-circle me-1"></i>Done
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/?status=today" class="btn btn-filter @(Model.FilterStatus == "today" ? "active" : "")">
+                    <i class="bi bi-calendar-event me-1"></i>Due Today
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/?status=overdue" class="btn btn-filter btn-filter-danger @(Model.FilterStatus == "overdue" ? "active" : "")">
+                    <i class="bi bi-exclamation-circle me-1"></i>Overdue
+                </a>
+            </div>
+            <div class="col-auto">
+                <a href="/?status=important" class="btn btn-filter btn-filter-warning @(Model.FilterStatus == "important" ? "active" : "")">
+                    <i class="bi bi-star me-1"></i>Important
+                </a>
+            </div>
+        </div>
+        @if (Model.Categories.Any())
+        {
+            <div class="row g-2 mt-2 align-items-center">
+                <div class="col-auto">
+                    <span class="filter-label"><i class="bi bi-tag me-1"></i>Category:</span>
+                </div>
+                @foreach (var cat in Model.Categories)
+                {
+                    <div class="col-auto">
+                        <a href="/?category=@cat" class="btn btn-filter btn-filter-category @(Model.FilterCategory == cat ? "active" : "")">
+                            @cat
+                        </a>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    <!-- Task List -->
+    @if (!Model.Todos.Any())
+    {
+        <div class="empty-state">
+            <div class="empty-state-icon">
+                <i class="bi bi-inbox"></i>
+            </div>
+            <h3>No tasks found</h3>
+            <p class="text-muted">
+                @if (!string.IsNullOrEmpty(Model.FilterStatus) || !string.IsNullOrEmpty(Model.FilterCategory))
+                {
+                    <span>Try adjusting your filters or </span>
+                }
+                Create your first task to get started!
+            </p>
+            <a href="/Todo/Create" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-2"></i>Create Task
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="task-list">
+            @foreach (var item in Model.Todos)
+            {
+                var priorityClass = item.Priority switch
+                {
+                    Priority.Urgent => "priority-urgent",
+                    Priority.High => "priority-high",
+                    Priority.Medium => "priority-medium",
+                    _ => "priority-low"
+                };
+                var priorityBadge = item.Priority switch
+                {
+                    Priority.Urgent => "bg-danger",
+                    Priority.High => "bg-warning text-dark",
+                    Priority.Medium => "bg-info",
+                    _ => "bg-secondary"
+                };
+                
+                <div class="task-card @(item.IsDone ? "task-done" : "") @(item.IsOverdue ? "task-overdue" : "") @priorityClass">
+                    <div class="task-card-body">
+                        <div class="task-check">
+                            <form asp-action="ToggleDone" asp-route-id="@item.Id" method="post" class="d-inline">
+                                <button type="submit" class="btn-check-task @(item.IsDone ? "checked" : "")" title="@(item.IsDone ? "Mark as pending" : "Mark as done")">
+                                    <i class="bi @(item.IsDone ? "bi-check-circle-fill" : "bi-circle")"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-header">
+                                <h5 class="task-title @(item.IsDone ? "text-decoration-line-through text-muted" : "")">
+                                    @item.Title
+                                </h5>
+                                <div class="task-actions">
+                                    <form asp-action="ToggleImportant" asp-route-id="@item.Id" method="post" class="d-inline">
+                                        <button type="submit" class="btn-star @(item.IsImportant ? "starred" : "")" title="@(item.IsImportant ? "Remove from important" : "Mark as important")">
+                                            <i class="bi @(item.IsImportant ? "bi-star-fill" : "bi-star")"></i>
+                                        </button>
+                                    </form>
+                                    <a href="/Todo/Edit/@item.Id" class="btn-action" title="Edit">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="/Todo/Details/@item.Id" class="btn-action" title="Details">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                                        <button type="submit" class="btn-action btn-action-danger" title="Delete">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            @if (!string.IsNullOrEmpty(item.Description))
+                            {
+                                <p class="task-description @(item.IsDone ? "text-muted" : "")">@item.Description</p>
+                            }
+                            <div class="task-meta">
+                                <span class="badge @priorityBadge me-2">
+                                    <i class="bi bi-flag me-1"></i>@item.Priority
+                                </span>
+                                @if (!string.IsNullOrEmpty(item.Category))
+                                {
+                                    <span class="badge bg-primary me-2">
+                                        <i class="bi bi-tag me-1"></i>@item.Category
+                                    </span>
+                                }
+                                @if (item.DueDate.HasValue)
+                                {
+                                    var dueDateClass = item.IsOverdue ? "text-danger" : (item.IsDueToday ? "text-warning" : (item.IsDueSoon ? "text-info" : "text-muted"));
+                                    <span class="@dueDateClass me-2">
+                                        <i class="bi bi-calendar3 me-1"></i>
+                                        @if (item.IsOverdue)
+                                        {
+                                            <strong>Overdue!</strong>
+                                        }
+                                        else if (item.IsDueToday)
+                                        {
+                                            <strong>Due Today</strong>
+                                        }
+                                        else
+                                        {
+                                            @item.DueDate.Value.ToString("MMM dd, yyyy")
+                                        }
+                                    </span>
+                                }
+                                <span class="text-muted">
+                                    <i class="bi bi-clock me-1"></i>Created @item.CreatedAt.ToLocalTime().ToString("MMM dd")
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

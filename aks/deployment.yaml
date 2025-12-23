@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todoapp
+  namespace: todoapp
+  labels:
+    app: todoapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todoapp
+  template:
+    metadata:
+      labels:
+        app: todoapp
+    spec:
+      containers:
+        - name: todoapp
+          # Image from ACR: bdlndacr01 (as per Terraform plan)
+          image: bdlndacr01.azurecr.io/todoapp:latest
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: "Production"
+          envFrom:
+            - secretRef:
+                name: todoapp-secrets
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+      # Node selector for the system node pool (as per Terraform plan)
+      nodeSelector:
+        kubernetes.io/os: linux

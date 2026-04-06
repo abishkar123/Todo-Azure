@@ -274,6 +274,19 @@ body {
   gap: 1rem;
 }
 
+/* Ensure cards stretch to equal height in grid */
+.task-list .col .task-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-list .col .task-card .task-card-body {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 1rem;
+}
+
 .task-check {
   flex-shrink: 0;
 }

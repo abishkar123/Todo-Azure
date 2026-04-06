@@ -79,6 +79,17 @@
     <!-- Filters -->
     <div class="filter-section mb-4">
         <div class="row g-2 align-items-center">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-1"><i class="bi bi-search"></i></span>
+                    <input type="search" class="form-control" placeholder="Search tasks..." aria-label="Search tasks">
+                </div>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="/Todo/Create" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-2"></i>Create Task
+                </a>
+            </div>
             <div class="col-auto">
                 <span class="filter-label"><i class="bi bi-funnel me-1"></i>Filter:</span>
             </div>
@@ -156,22 +167,24 @@
         <div class="task-list">
             @foreach (var item in Model.Todos)
             {
-                var priorityClass = item.Priority switch
-                {
-                    Priority.Urgent => "priority-urgent",
-                    Priority.High => "priority-high",
-                    Priority.Medium => "priority-medium",
-                    _ => "priority-low"
-                };
-                var priorityBadge = item.Priority switch
-                {
-                    Priority.Urgent => "bg-danger",
-                    Priority.High => "bg-warning text-dark",
-                    Priority.Medium => "bg-info",
-                    _ => "bg-secondary"
-                };
-                
-                <div class="task-card @(item.IsDone ? "task-done" : "") @(item.IsOverdue ? "task-overdue" : "") @priorityClass">
+                @{ 
+                    var priorityClass = item.Priority switch
+                    {
+                        Priority.Urgent => "priority-urgent",
+                        Priority.High => "priority-high",
+                        Priority.Medium => "priority-medium",
+                        _ => "priority-low"
+                    };
+                    var priorityBadge = item.Priority switch
+                    {
+                        Priority.Urgent => "bg-danger",
+                        Priority.High => "bg-warning text-dark",
+                        Priority.Medium => "bg-info",
+                        _ => "bg-secondary"
+                    };
+                }
+                <div class="col">
+                    <div class="task-card d-flex flex-column @(item.IsDone ? "task-done" : "") @(item.IsOverdue ? "task-overdue" : "") @priorityClass">
                     <div class="task-card-body">
                         <div class="task-check">
                             <form asp-action="ToggleDone" asp-route-id="@item.Id" method="post" class="d-inline">
@@ -243,6 +256,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
                 </div>
             }
         </div>

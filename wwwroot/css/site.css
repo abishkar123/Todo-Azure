@@ -97,6 +97,7 @@ body {
 .stat-total .stat-icon {
   background: var(--primary-gradient);
 }
+
 .stat-total {
   border-left-color: #667eea;
 }
@@ -104,6 +105,7 @@ body {
 .stat-pending .stat-icon {
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
 }
+
 .stat-pending {
   border-left-color: #f093fb;
 }
@@ -111,6 +113,7 @@ body {
 .stat-completed .stat-icon {
   background: var(--success-gradient);
 }
+
 .stat-completed {
   border-left-color: #11998e;
 }
@@ -118,6 +121,7 @@ body {
 .stat-overdue .stat-icon {
   background: var(--danger-gradient);
 }
+
 .stat-overdue {
   border-left-color: #eb3349;
 }
@@ -242,12 +246,15 @@ body {
 .task-card.priority-urgent {
   border-left-color: #e53e3e;
 }
+
 .task-card.priority-high {
   border-left-color: #ed8936;
 }
+
 .task-card.priority-medium {
   border-left-color: #4299e1;
 }
+
 .task-card.priority-low {
   border-left-color: #a0aec0;
 }

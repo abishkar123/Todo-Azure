@@ -1,32 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\raiab\\Documents\\test-todo\\src\\TodoApp\\TodoApp.csproj": {}
+    "C:\\Users\\abish\\OneDrive\\Documents\\ToDo-App\\TodoApp\\TodoApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\raiab\\Documents\\test-todo\\src\\TodoApp\\TodoApp.csproj": {
+    "C:\\Users\\abish\\OneDrive\\Documents\\ToDo-App\\TodoApp\\TodoApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\raiab\\Documents\\test-todo\\src\\TodoApp\\TodoApp.csproj",
+        "projectUniqueName": "C:\\Users\\abish\\OneDrive\\Documents\\ToDo-App\\TodoApp\\TodoApp.csproj",
         "projectName": "TodoApp",
-        "projectPath": "C:\\Users\\raiab\\Documents\\test-todo\\src\\TodoApp\\TodoApp.csproj",
-        "packagesPath": "C:\\Users\\raiab\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\raiab\\Documents\\test-todo\\src\\TodoApp\\obj\\",
+        "projectPath": "C:\\Users\\abish\\OneDrive\\Documents\\ToDo-App\\TodoApp\\TodoApp.csproj",
+        "packagesPath": "C:\\Users\\abish\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\abish\\OneDrive\\Documents\\ToDo-App\\TodoApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\raiab\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\abish\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -75,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

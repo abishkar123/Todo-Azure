@@ -9,41 +9,41 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TodoApp
 build_property.RootNamespace = TodoApp
-build_property.ProjectDir = C:\Users\raiab\Documents\test-todo\src\TodoApp\
+build_property.ProjectDir = C:\Users\abish\OneDrive\Documents\ToDo-App\TodoApp\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\raiab\Documents\test-todo\src\TodoApp
+build_property.MSBuildProjectDirectory = C:\Users\abish\OneDrive\Documents\ToDo-App\TodoApp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/Shared/_Layout.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/Todo/Create.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/Todo/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/Todo/Details.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/Todo/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/Todo/Edit.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/Todo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/Todo/Index.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/Todo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVG9kb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/_ViewImports.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/raiab/Documents/test-todo/src/TodoApp/Views/_ViewStart.cshtml]
+[C:/Users/abish/OneDrive/Documents/ToDo-App/TodoApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

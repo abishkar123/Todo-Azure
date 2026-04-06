@@ -1,0 +1,55 @@
+# Visual Studio & .NET
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+artifacts/
+publish/
+
+# NuGet
+packages/
+*.nupkg
+project.assets.json
+project.lock.json
+
+# Runtime / compiled
+*.dll
+*.exe
+*.pdb
+*.runtimeconfig.json
+runtimes/**/native/
+
+# Generated files
+*.g.cs
+*.g.i.cs
+*.designer.cs
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+*.cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / local settings (keep out of repo)
+secrets.json
+appsettings.Development.json
+appsettings.*.Local.json
+appsettings.*.User.json
+.env
+appsettings.json
+
+# Docker / CI overrides
+docker-compose.override.yml
